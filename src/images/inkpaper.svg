@@ -1,0 +1,86 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" viewBox="0 0 46.9 29.5" style="enable-background:new 0 0 46.9 29.5;width: 130px;/* height: 20px; */" xml:space="preserve" class="lds-dice polygon1" transform="rotate(0)">
+    <style>
+.st0{fill:#134B7E;enable-background:new;}
+	.st1{fill:#49D0D1;enable-background:new;}
+      @keyframes lds-dice {
+        0% {
+          transform: rotateX(0deg);
+          animation-timing-function: linear;
+          opacity: 1;
+            animation-delay: 0.5s;
+        }
+        24% {transform: rotateY(0deg);
+        animation-timing-function: linear;
+          opacity: 1;
+            animation-delay: 0.5s;
+        }
+        25% {
+          transform: rotateX(0deg);
+          opacity:1;
+            animation-delay: 0.5s;
+              animation-timing-function: linear;
+        }
+        50% {
+           transform: rotateY(0deg);
+          animation-timing-function: ease-in-out;
+          opacity: 1;
+            animation-delay: 0.5s;
+        }
+        74% {
+              transform: rotateX(0deg);  
+              animation-timing-function: linear;
+          opacity: 1;
+          animation-delay: 0.5s;
+        }
+        75% {
+          transform: rotateX(0deg);
+            animation-timing-function: linear;
+          opacity: 1;
+          animation-delay: 0.5s;
+        }
+        100% {
+          transform: rotateY(0deg);
+            animation-timing-function: linear;
+          opacity: 1;
+            animation-delay: 0.5s;
+        }
+        0% { 
+        animation-timing-function: cubic-bezier(0.4, 0, 1, 1);
+fill: #49D0D1;
+   }
+
+   33% {
+         animation-timing-function: linear;
+
+      fill: #134B7E;
+
+   }
+
+   66% {
+         animation-timing-function: linear;
+
+      fill: #49D0D1;
+
+   }
+
+   100% {
+         animation-timing-function: linear;
+
+      fill: #134B7E;
+
+   }
+      }
+
+      .lds-dice .polygon1 {
+        animation: lds-dice 2s linear infinite;
+      }
+      .lds-dice .polygon2 {
+        animation: lds-dice 2s linear infinite;
+        animation-delay: -1.5s;
+
+      }
+    </style>
+<polygon class="st0 lds-dice polygon2" points="17.8,5 11,4.9 5.4,14.8 10.9,24.2 22.3,24.6 28,14.7 24.5,8.9 29.4,8.9 32.9,14.7 24.8,28.8 8.7,28.6   0.7,14.5 8.7,0.8 15.4,0.8 "></polygon>
+<polygon class="st1 polygon1" points="22.5,20.7 17.7,20.7 14.4,14.8 22.6,0.6 38.4,0.8 46.5,14.6 38.4,28.6 31.8,28.8 29.3,24.6 36.1,24.3   41.8,14.5 36.1,5 24.7,5 19.1,14.8 "></polygon>
+<!-- <animateTransform xmlns="http://www.w3.org/2000/svg" attributeName="transform" type="rotate" keyTimes="0;1" values="0;360" dur="2s" repeatCount="indefinite" begin="-0.6666666666666666s" style="animation-play-state: running; animation-delay: 0s;"></animateTransform> -->
+</svg>
