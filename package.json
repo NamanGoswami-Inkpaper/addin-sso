@@ -8,15 +8,16 @@
     "dev_server_port": 3000
   },
   "scripts": {
-    "build": "webpack --mode production",
+    "build": "npm run build:client && npm run build:node",
     "build:dev": "webpack --mode development",
+    "build:client": "webpack --mode production --config webpack.browser.config.js",
+    "build:node": "webpack --mode production --config webpack.node.config.js",
     "configure-sso": "office-addin-sso configure manifest.xml",
     "dev-server": "node --inspect=localhost:8080 dist/middletier.js",
     "lint": "office-addin-lint check",
     "lint:fix": "office-addin-lint fix",
-    "prestart": "npm run build:dev",
     "prettier": "office-addin-lint prettier",
-    "start": "office-addin-debugging start manifest.xml",
+    "start": "node server/middletier.js",
     "start:desktop": "office-addin-debugging start manifest.xml desktop",
     "start:web": "office-addin-debugging start manifest.xml web",
     "stop": "office-addin-debugging stop manifest.xml",
@@ -42,7 +43,6 @@
     "promise-polyfill": "8.3.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-hot-loader": "^4.13.1",
     "regenerator-runtime": "^0.13.7",
     "svg-inline-loader": "^0.8.2",
     "webpack-node-externals": "^3.0.0"

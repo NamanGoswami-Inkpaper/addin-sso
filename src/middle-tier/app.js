@@ -4,23 +4,19 @@
  * This file is the main Node.js server file that defines the express middleware.
  */
 
-if (process.env.NODE_ENV !== "production") {
-  require("dotenv").config();
-}
+require("dotenv").config();
 import * as createError from "http-errors";
 import * as path from "path";
 import * as cookieParser from "cookie-parser";
 import * as logger from "morgan";
 import express from "express";
-import https from "https";
-import { getHttpsServerOptions } from "office-addin-dev-certs";
 import { getUserData } from "./msgraph-helper";
 import { validateJwt } from "./ssoauth-helper";
 
 /* global console, process, require, __dirname */
 
 const app = express();
-const port = process.env.API_PORT || "3000";
+const port = process.env.PORT;
 
 app.set("port", port);
 
@@ -45,59 +41,37 @@ if (process.env.NODE_ENV !== "production") {
   });
 } else {
   // In production mode, let static files be cached.
-  app.use(express.static(path.join(process.cwd(), "dist")));
+  app.use(express.static(path.join(process.cwd())));
+  console.log("static set up: " + path.join(process.cwd()));
 }
 
 const indexRouter = express.Router();
 indexRouter.get("/", function (req, res) {
-  res.render("/taskpane.html");
+  res.sendFile("/taskpane.html", { root: __dirname });
 });
+
+// Route APIs
+indexRouter.get("/getuserdata", validateJwt, getUserData);
 
 app.use("/", indexRouter);
 
-// Middle-tier API calls
-// listen for 'ping' to verify service is running
-// Un comment for development debugging, but un needed for production deployment
-// app.get("/ping", function (req: any, res: any) {
-//   res.send(process.platform);
-// });
-
-app.get("/getuserdata", validateJwt, getUserData);
-
-// Get the client side task pane files requested
-app.get("/taskpane.html", async (req, res) => {
-  return res.sendfile("taskpane.html");
-});
-
-app.get("/fallbackauthdialog.html", async (req, res) => {
-  return res.sendfile("fallbackauthdialog.html");
-});
-
 // Catch 404 and forward to error handler
 app.use(function (req, res, next) {
+  console.log("error 404");
   next(createError(404));
 });
 
 // error handler
-app.use(function (err, req, res) {
+app.use(function (err, req, temp, res) {
   // set locals, only providing error in development
+  console.log("error 500");
   res.locals.message = err.message;
   res.locals.error = req.app.get("env") === "development" ? err : {};
 
   // render the error page
-  res.status(err.status || 500);
-  res.render("error");
+  res.status(err.status || 500).send({
+    message: err.message,
+  });
 });
 
-// getHttpsServerOptions().then((options) => {
-//   https
-//     .createServer(options, app)
-//     .listen(port, () => console.log(`Server running on ${port} in ${process.env.NODE_ENV} mode`));
-// });
-
-
-// start the server
-app.listen(port, () => {
-  console.log(`Server running on ${port} in ${process.env.NODE_ENV} mode`);
-}
-);
+app.listen(process.env.PORT, () => console.log("Server listening on port: " + process.env.PORT));

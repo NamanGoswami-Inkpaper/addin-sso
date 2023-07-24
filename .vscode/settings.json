@@ -3,6 +3,8 @@
     "javascript",
     "javascriptreact",
     "typescript"
-  ]
+  ],
+  "appService.defaultWebAppToDeploy": "/subscriptions/5352609e-aa23-45a7-8bbd-31fabe375f02/resourceGroups/inkbotaddin2/providers/Microsoft.Web/sites/inkbot-addin-sso-test",
+  "appService.deploySubpath": "dist"
 }
   
